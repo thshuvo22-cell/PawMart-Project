@@ -49,8 +49,20 @@ const MyOrders = () => {
     doc.save("my-orders.pdf");
   };
 
-  const totalItems = myOrders.reduce((a, b) => a + b.quantity, 0);
-  const totalSpend = myOrders.reduce((a, b) => a + b.price * b.quantity, 0);
+  const STATS_START_DATE = new Date('2026-11-21T00:00:00+06:00');
+
+const newOrders = myOrders.filter(order => {
+  const orderDate = new Date(order.date);
+  return !isNaN(orderDate.getTime()) && orderDate >= STATS_START_DATE;
+});
+
+const totalItems = newOrders.reduce(
+  (total, order) => total + Number(order.quantity || 0), 0
+);
+
+const totalSpend = newOrders.reduce(
+  (total, order) => total + Number(order.price || 0) * Number(order.quantity || 0), 0
+);
 
   return (
     <div className="mb-40">
@@ -74,7 +86,7 @@ const MyOrders = () => {
           <div className="bg-white rounded-2xl p-5 shadow hover:shadow-lg transition">
             <p className="text-sm text-gray-500">Total Orders</p>
             <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600
-            bg-clip-text text-transparent">{myOrders.length}</h2>
+            bg-clip-text text-transparent">{newOrders.length}</h2>
           </div>
 
           <div className="bg-white rounded-2xl p-5 shadow hover:shadow-lg transition">
