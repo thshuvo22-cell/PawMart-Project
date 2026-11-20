@@ -27,7 +27,7 @@ const PetsSupplies = () => {
   };
     useEffect(()=>{
       setLoading(true);
-      fetch(`https://pawmarkt.vercel.app/services?category=${category}`)
+      fetch(`https://pawmart-backend-tav8.onrender.com/services?category=${category}`)
       .then(res=>res.json())
       .then(data => {
         setServices(data);

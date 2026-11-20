@@ -14,7 +14,7 @@ const PopularSection = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`https://pawmarkt.vercel.app/services?category=${category}&location=${location}`)
+    fetch(`https://pawmart-backend-tav8.onrender.com/services?category=${category}&location=${location}`)
       .then(res => res.json())
       .then(data => { setServices(data); setLoading(false) })
       .catch(err => { console.log(err); setLoading(false); })

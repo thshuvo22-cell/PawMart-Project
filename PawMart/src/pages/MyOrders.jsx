@@ -17,7 +17,7 @@ const MyOrders = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get('https://pawmarkt.vercel.app/orders')
+    axios.get('https://pawmart-backend-tav8.onrender.com/orders')
       .then(res => {
         setMyOrders(res.data);
         setLoading(false);

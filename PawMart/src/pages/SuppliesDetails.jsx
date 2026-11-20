@@ -12,7 +12,7 @@ const SuppliesDetails = () => {
     const {user} = useContext(AuthContext);
 
     useEffect(()=>{
-          fetch(`https://pawmarkt.vercel.app/services/${id}`)
+          fetch(`https://pawmart-backend-tav8.onrender.com/services/${id}`)
           .then(res=>res.json())
           .then(data => setService(data))
           .catch(err=>console.log(err))
@@ -43,7 +43,7 @@ const SuppliesDetails = () => {
         additonalNote,
         date: new Date()
     }
-    axios.post('https://pawmarkt.vercel.app/orders',formData)
+    axios.post('https://pawmart-backend-tav8.onrender.com/orders',formData)
     .then(res=>{
         console.log(res);
     })
