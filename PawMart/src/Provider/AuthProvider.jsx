@@ -36,7 +36,7 @@ const AuthProvider = ({children}) => {
     setUser(currentUser);
     if(currentUser?.email){
       try{
-        const res = await fetch(`http://localhost:3000/users/${currentUser.email}`);
+        const res = await fetch(`https://pawmart-backend-tav8.onrender.com/users/${currentUser.email}`);
         const data = await res.json();
         setRole(data.role || "customer"); // backend থেকে role assign
       } catch(err){

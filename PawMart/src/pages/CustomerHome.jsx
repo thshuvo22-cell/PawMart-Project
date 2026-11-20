@@ -31,7 +31,7 @@ const CustomerHome = () => {
     if (!user) return;
 
     // Fetch user's listings
-    fetch(`http://localhost:3000/myservices?email=${user?.email}`)
+    fetch(`https://pawmart-backend-tav8.onrender.com/myservices?email=${user?.email}`)
       .then(res => res.json())
       .then(data => {
         setMyListingsCount(data.length);
@@ -47,7 +47,7 @@ const CustomerHome = () => {
       });
 
     // Fetch user's orders
-    fetch('http://localhost:3000/orders')
+    fetch('https://pawmart-backend-tav8.onrender.com/orders')
       .then(res => res.json())
       .then(data => {
         const myOrders = data.filter(order => order.buyerEmail === user?.email);

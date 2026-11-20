@@ -6,7 +6,7 @@ const AllOrders = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/orders")
+    fetch("https://pawmart-backend-tav8.onrender.com/orders")
       .then(res => res.json())
       .then(data => {
         setOrders(data);
@@ -24,7 +24,7 @@ const AllOrders = () => {
       confirmButtonText: "Yes, delete"
     }).then(result => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/orders/${id}`, {
+        fetch(`https://pawmart-backend-tav8.onrender.com/orders/${id}`, {
           method: "DELETE",
         })
           .then(res => res.json())

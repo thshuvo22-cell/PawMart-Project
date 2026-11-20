@@ -24,7 +24,7 @@ const Login = () => {
       const user = userCredential.user;
 
       // MongoDB এ role update
-      await fetch("http://localhost:3000/users", {
+      await fetch("https://pawmart-backend-tav8.onrender.com/users", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
@@ -67,7 +67,7 @@ const Login = () => {
     const result = await handleGoogleSignin();
     const user = result.user;
 
-    await fetch("http://localhost:3000/users", {
+    await fetch("https://pawmart-backend-tav8.onrender.com/users", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({

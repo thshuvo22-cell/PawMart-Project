@@ -95,7 +95,7 @@ const AdminHome = () => {
 
   useEffect(() => {
     // Fetch stats from backend
-    fetch("http://localhost:3000/stats")
+    fetch("https://pawmart-backend-tav8.onrender.com/stats")
       .then((res) => res.json())
       .then((data) => {
         setStats({

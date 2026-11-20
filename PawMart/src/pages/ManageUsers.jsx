@@ -6,7 +6,7 @@ const ManageUsers = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/users")
+    fetch("https://pawmart-backend-tav8.onrender.com/users")
       .then(res => res.json())
       .then(data => {
         setUsers(data);
@@ -24,7 +24,7 @@ const ManageUsers = () => {
       confirmButtonText: "Yes, delete"
     }).then(result => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/users/${id}`, {
+        fetch(`https://pawmart-backend-tav8.onrender.com/users/${id}`, {
           method: "DELETE",
         })
           .then(res => res.json())

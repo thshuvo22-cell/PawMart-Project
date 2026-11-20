@@ -7,7 +7,7 @@ const ManageServices = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/services")
+    fetch("https://pawmart-backend-tav8.onrender.com/services")
       .then(res => res.json())
       .then(data => {
         setServices(data);
@@ -24,7 +24,7 @@ const ManageServices = () => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/delete/${id}`, {
+        fetch(`https://pawmart-backend-tav8.onrender.com/delete/${id}`, {
           method: "DELETE",
         })
           .then(res => res.json())

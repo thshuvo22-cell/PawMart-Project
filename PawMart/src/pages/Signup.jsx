@@ -49,7 +49,7 @@ const Signup = () => {
     });
 
     // 3️⃣ Save user to DB
-    await fetch("http://localhost:3000/users", {
+    await fetch("https://pawmart-backend-tav8.onrender.com/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -77,7 +77,7 @@ const Signup = () => {
     const result = await handleGoogleSignin();
     const user = result.user;
 
-    await fetch("http://localhost:3000/users", {
+    await fetch("https://pawmart-backend-tav8.onrender.com/users", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
