@@ -122,8 +122,9 @@ export    const router = createBrowserRouter([
             },
         ]
     }            
-]    
-) ;
+], {
+    basename: "/PawMart-Project",
+});
 
 export default router;
 
