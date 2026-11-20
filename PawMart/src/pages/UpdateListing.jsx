@@ -14,7 +14,7 @@ const UpdateListing = () => {
 
 
     useEffect(()=>{
-        axios.get(`https://pawmart-backend-tav8.onrender.com/services/${id}`)
+        axios.get(`https://pawmarkt.vercel.app/services/${id}`)
         .then(res=>{
             setService(res.data)
             setCategory(res.data.category)
@@ -49,7 +49,7 @@ const UpdateListing = () => {
         }
         console.log(formData);
 
-        axios.put(`https://pawmart-backend-tav8.onrender.com/update/${id}`,formData)
+        axios.put(`https://pawmarkt.vercel.app/update/${id}`,formData)
         .then(res=>{
             console.log(res.data);
             navigation('/mylisting');
