@@ -24,6 +24,68 @@ async function run() {
     const petService = database.collection('service');
     const ordersCollections = database.collection('orders');
     const usersCollection = database.collection('users');
+    const appointmentsCollection = database.collection('appointments');
+
+    // Book appointment
+    app.post('/appointments', async (req, res) => {
+      try {
+        const { doctorName, doctorSpecialty, customerEmail } = req.body;
+
+        if (!doctorName || !customerEmail) {
+          return res.status(400).send({
+            message: 'Doctor name and customer email are required.'
+          });
+        }
+
+        // Calculate tomorrow's date using Bangladesh timezone
+        const parts = new Intl.DateTimeFormat('en-US', {
+          timeZone: 'Asia/Dhaka',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit'
+        }).formatToParts(new Date());
+
+        const getPart = (type) =>
+          parts.find(item => item.type === type).value;
+
+        const tomorrow = new Date(Date.UTC(
+          Number(getPart('year')),
+          Number(getPart('month')) - 1,
+          Number(getPart('day')) + 1
+        ));
+
+        const appointmentDate = [
+          tomorrow.getUTCFullYear(),
+          String(tomorrow.getUTCMonth() + 1).padStart(2, '0'),
+          String(tomorrow.getUTCDate()).padStart(2, '0')
+        ].join('-');
+
+        const appointment = {
+          doctorName: String(doctorName).trim(),
+          doctorSpecialty: String(doctorSpecialty || '').trim(),
+          customerEmail: String(customerEmail).trim().toLowerCase(),
+          appointmentDate,
+          visitingHours: '10:00 AM - 5:00 PM',
+          status: 'Booked',
+          createdAt: new Date()
+        };
+
+        const result = await appointmentsCollection.insertOne(appointment);
+
+        res.status(201).send({
+          success: true,
+          message: 'Appointment booked successfully!',
+          appointmentId: result.insertedId,
+          appointment
+        });
+
+      } catch (error) {
+        console.error('Appointment booking error:', error);
+        res.status(500).send({
+          message: 'Failed to book appointment.'
+        });
+      }
+    });
 
     // 🔹 Register user (default role: customer)
     app.post('/users', async (req, res) => {
