@@ -1,4 +1,5 @@
-import { createBrowserRouter} from "react-router";
+
+import { createHashRouter } from "react-router";
 import MainLayout from "../layout/MainLayout";
 import Home from "../pages/Home";
 import MyProfile from "../pages/MyProfile";
@@ -23,108 +24,109 @@ import Blog from "../pages/Blog";
 import Support from "../pages/Support";
 import Privacy from "../pages/Privacy";
 
-
-export    const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <MainLayout />,
-        errorElement:<Error></Error>,
-        children: [
-            {
-               index: true, 
-               element: <Home/>,
-            
-             },
-             {
-                path:"/petsSupplies",
-                element: <PetsSupplies />,
-             },
-             {
-                path:"/myProfile",
-                element: <PrivateRoute><MyProfile /></PrivateRoute>,
-             },
-             {
-                path:"/login",
-                element: <Login />,
-             },
-             {
-                path:"/signup",
-                element: <Signup />,
-             },
-             {
-                path:"/details/:id",
-                element:<SuppliesDetails></SuppliesDetails>,
-             },
-             {
-               path:'/forget/:email',
-               element: <ForgetPass></ForgetPass>
-             },
-             {
-               path:'/contact',
-               element: <Contact></Contact>
-             },
-             {
-               path:'/blog',
-               element: <Blog></Blog>
-             },
-             {
-               path:'/support',
-               element: <Support></Support>
-             },
-             {
-               path:'/privacy',
-               element: <Privacy></Privacy>
-             },
-        ]
-    },
-    {
-        path: "/",
-        element: <PrivateRoute><DeshboardLayout />
-        </PrivateRoute>,
-        errorElement: <Error />,
-        children: [
-            {
-                path: "/dashboard",
-                element: <DeshboardHome />,
-            },
-            {
-                path: "/dashboard/myProfile",
-                element: <MyProfile />,
-            },
-          
-            {
-               path: '/dashboard/mylisting',
-               element: <MyListing />
-            },
-            {
-               path: '/dashboard/add-listing',
-               element: <AddListing></AddListing>
-            },
-            {
-               path: '/dashboard/update-listing/:id',
-               element: <UpdateListing />
-            },
-            {
-               path: '/dashboard/myorders',
-               element: <MyOrders />
-            },
-            {
-               path: '/dashboard/manage-services',
-               element: <ManageServices />
-            },
-            {
-               path: '/dashboard/manage-users',
-               element: <ManageUsers></ManageUsers>
-            },
-            {
-               path: '/dashboard/all-orders',
-               element: <AllOrder></AllOrder>
-            },
-        ]
-    }            
-], {
-    basename: "/PawMart-Project",
-});
+export const router = createHashRouter([
+  {
+    path: "/",
+    element: <MainLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "/petsSupplies",
+        element: <PetsSupplies />,
+      },
+      {
+        path: "/myProfile",
+        element: (
+          <PrivateRoute>
+            <MyProfile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/signup",
+        element: <Signup />,
+      },
+      {
+        path: "/details/:id",
+        element: <SuppliesDetails />,
+      },
+      {
+        path: "/forget/:email",
+        element: <ForgetPass />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/blog",
+        element: <Blog />,
+      },
+      {
+        path: "/support",
+        element: <Support />,
+      },
+      {
+        path: "/privacy",
+        element: <Privacy />,
+      },
+    ],
+  },
+  {
+    path: "/",
+    element: (
+      <PrivateRoute>
+        <DeshboardLayout />
+      </PrivateRoute>
+    ),
+    errorElement: <Error />,
+    children: [
+      {
+        path: "/dashboard",
+        element: <DeshboardHome />,
+      },
+      {
+        path: "/dashboard/myProfile",
+        element: <MyProfile />,
+      },
+      {
+        path: "/dashboard/mylisting",
+        element: <MyListing />,
+      },
+      {
+        path: "/dashboard/add-listing",
+        element: <AddListing />,
+      },
+      {
+        path: "/dashboard/update-listing/:id",
+        element: <UpdateListing />,
+      },
+      {
+        path: "/dashboard/myorders",
+        element: <MyOrders />,
+      },
+      {
+        path: "/dashboard/manage-services",
+        element: <ManageServices />,
+      },
+      {
+        path: "/dashboard/manage-users",
+        element: <ManageUsers />,
+      },
+      {
+        path: "/dashboard/all-orders",
+        element: <AllOrder />,
+      },
+    ],
+  },
+]);
 
 export default router;
-
